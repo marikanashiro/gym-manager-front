@@ -1,0 +1,5 @@
+<h2>Alunos</h2>
+<ul>
+    <li *ngFor="let aluno of alunos">{{ aluno.nome }} (ID: {{ aluno.id }})</li>
+</ul>
+<button (click)="carregarAlunos()">Recarregar</button>
