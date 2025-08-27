@@ -1,13 +1,13 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.scss']
+  styleUrls: ['./app.scss'],
+  standalone: true,
+  imports: [RouterModule]
 })
 export class AppComponent {
-  protected readonly title = signal('gym-manager-front');
+  title = 'gym-manager-front';
 }

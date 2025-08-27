@@ -1,5 +1,48 @@
-<h2>Alunos</h2>
-<ul>
-    <li *ngFor="let aluno of alunos">{{ aluno.nome }} (ID: {{ aluno.id }})</li>
-</ul>
-<button (click)="carregarAlunos()">Recarregar</button>
+<div class="container">
+    <h1>Meus Alunos</h1>
+    <div class="search-bar">
+        <input type="text" placeholder="Digite o nome..." (input)="onFiltroChange($event)" />
+        <select (change)="onFiltroEstimuloChange($event)">
+            <option value=" ">Selecione o tipo de estímulo</option>
+            <option value="FORCA">Força</option>
+            <option value="METABOLICO">Metabólico</option>
+            <option value="HIPERTROFIA">Hipertrofia</option>
+            <option value="RESISTENCIA">Resistência</option>
+            <option value="ESPECIFICO">Específico</option>
+        </select>
+        <input type="date" placeholder="Data de expiração" (change)="onFiltroDataExpiracaoChange($event)" />
+        <button (click)="filtrarAlunos()">Filtrar</button>
+        <button (click)="limparFiltros()">Limpar</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Contato</th>
+                <th>Tipo Estímulo</th>
+                <th>Data de Expiração</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let aluno of alunosFiltrados">
+                <td>{{ aluno.nome }}</td>
+                <td>{{ aluno.telefone }}</td>
+                <td>
+                    <div *ngFor="let treino of aluno.treinos">
+                        {{ treino.tipoEstimulo }}
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let treino of aluno.treinos">
+                        {{ treino.dataExpiracao | date: 'dd/MM/yyyy' }}
+                    </div>
+                </td>
+                <td>
+                    <button>Editar</button>
+                    <button>Ver</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

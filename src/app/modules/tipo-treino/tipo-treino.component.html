@@ -1,0 +1,27 @@
+<div class="container">
+    <h1>Novo Tipo de Treino para o Treino: {{ treinoId }}</h1>
+    <form (ngSubmit)="onSubmit()" #tipoTreinoForm="ngForm">
+        <div> 
+            <label>Grupos Musculares:</label>
+            <div *ngFor="let grupo of gruposMusculares">
+                <input type="checkbox" [value]="grupo" (change)="addGrupoMuscular(grupo); $event.stopPropagation()" />
+                <label>{{ grupo }}</label>
+                <button type="button" (click)="removeGrupoMuscular(grupo)" *ngIf="tipoTreino.gruposMusculares.includes(grupo)">Remover</button>
+            </div>
+        </div>
+        <div>
+            <label for="quantidadeSeries">Séries:</label>
+            <input type="number" id="quantidadeSeries" name="quantidadeSeries" [(ngModel)]="tipoTreino.quantidadeSeries" />
+        </div>
+        <div>
+            <label for="quantidadeRepeticoes">Repetições:</label>
+            <input type="number" id="quantidadeRepeticoes" name="quantidadeRepeticoes" [(ngModel)]="tipoTreino.quantidadeRepeticoes" />
+        </div>
+        <div>
+            <label for="exercicios">Exercícios:</label>
+            <input type="text" id="exercicios" name="exercicios" [(ngModel)]="tipoTreino.exercicios" />
+        </div>
+        <button type="submit" [disabled]="!tipoTreinoForm.valid">Criar Tipo Treino</button>
+        <button type="button" (click)="navigateToTreinoForm()">Cancelar</button>
+    </form>
+</div>

@@ -1,1 +1,17 @@
-<p>treino-form works!</p>
+<div class="container">
+    <h1>Novo Treino para Aluno: {{ alunoId }}</h1>
+    <form (ngSubmit)="onSubmit()" #treinoForm="ngForm">
+        <div>
+            <label for="tipoEstimulo">Tipo de Estímulo:</label>
+            <select id="tipoEstimulo" name="tipoEstimulo" [(ngModel)]="treino.tipoEstimulo" required >
+                <option *ngFor="let estimulo of tipoEstimulos" [value]="estimulo">{{ estimulo }}</option>
+            </select>
+        </div>
+        <div>
+            <label for="dataExpiracao">Data de Expiração:</label>
+            <input type="date" id="dataExpiracao" name="dataExpiracao" [(ngModel)]="treino.dataExpiracao" required />
+        </div>
+        <button type="submit" [disabled]="!treinoForm.valid">Criar Treino</button>
+        <button type="button" (click)="navigateToAlunos()">Cancelar</button>
+    </form>
+</div>

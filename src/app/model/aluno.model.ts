@@ -1,8 +1,11 @@
+import { Treino } from "./treino.model";
+
 export interface Aluno {
-    id: number;
+    id?: number;
     nome: string;
     telefone: string;
     email: string;
     endereco: string;
     dataNascimento: string;
+    treinos?: Treino[];
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Treino } from '../model/treino.model';
 import { Aluno } from '../model/aluno.model';
+import { TipoTreino } from '../model/tipoTreino.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,11 @@ export class ApiService {
   }
 
   getTreinos(): Observable<Treino[]> {
-    return this.http.get<Treino[]>(`${this.baseUrl}/treinos`)
+    return this.http.get<Treino[]>(`${this.baseUrl}/treinos`);
+  }
+
+  getTipoTreinos(): Observable<TipoTreino[]> {
+    return this.http.get<TipoTreino[]>(`${this.baseUrl}/tipoTreinos`);
   }
 
   createAluno(aluno: Aluno): Observable<Aluno> {
@@ -27,5 +32,9 @@ export class ApiService {
 
   createTreino(treino: Treino): Observable<Treino> {
     return this.http.post<Treino>(`${this.baseUrl}/treinos`, treino);
+  }
+
+  createTipoTreino(tipoTreino: TipoTreino): Observable<TipoTreino> {
+    return this.http.post<TipoTreino>(`${this.baseUrl}/tipoTreinos`, tipoTreino);
   }
 }
