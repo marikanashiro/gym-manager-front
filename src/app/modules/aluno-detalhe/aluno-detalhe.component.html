@@ -1,0 +1,18 @@
+<div class="container">
+    <h1>Detalhes do Aluno</h1>
+    <div *ngIf="aluno">
+        <p><strong>Nome:</strong> {{ aluno.nome }} </p>
+        <p><strong>Telefone:</strong> {{ aluno.telefone }} </p>
+        <p><strong>E-mail:</strong> {{ aluno.email }} </p>
+        <p><strong>Endereço:</strong> {{ aluno.endereco }} </p>
+        <p><strong>Data de Nascimento:</strong> {{ aluno.dataNascimento }} </p>
+        <h3>Treinos (Mais Recentes Primeiro)</h3>
+        <ul>
+            <li *ngFor="let treino of aluno.treinos">
+                <strong>Tipo:</strong> {{ treino.tipoEstimulo }} |
+                <strong>Data de Criação:</strong> {{ treino.dataCriacao | date:'dd/MM/yyyy' }} |
+                <strong>Data de Expiração:</strong> {{ treino.dataExpiracao | date:'dd/MM/yyyy' }}
+            </li>
+        </ul>
+    </div>
+</div>

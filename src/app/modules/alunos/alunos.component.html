@@ -3,7 +3,7 @@
     <div class="search-bar">
         <input type="text" placeholder="Digite o nome..." (input)="onFiltroChange($event)" />
         <select (change)="onFiltroEstimuloChange($event)">
-            <option value=" ">Selecione o tipo de estímulo</option>
+            <option value="">Selecione o tipo de estímulo</option>
             <option value="FORCA">Força</option>
             <option value="METABOLICO">Metabólico</option>
             <option value="HIPERTROFIA">Hipertrofia</option>
@@ -39,10 +39,11 @@
                     </div>
                 </td>
                 <td>
-                    <button>Editar</button>
-                    <button>Ver</button>
+                    <button (click)="editarAluno(aluno.id)">Editar</button>
+                    <button (click)="verAluno(aluno.id)">Ver</button>
+                    <button (click)="novoTreino(aluno.id)">Novo Treino</button>
                 </td>
             </tr>
         </tbody>
     </table>
-</div>
+</div> 

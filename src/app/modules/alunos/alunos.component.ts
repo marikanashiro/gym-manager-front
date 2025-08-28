@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Aluno } from '../../model/aluno.model';
 import { ApiService } from '../../service/api.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-alunos',
@@ -18,7 +19,7 @@ export class AlunosComponent implements OnInit {
   filtroEstimulo: string = '';
   filtroDataExpiracao: string = '';
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
       this.carregarAlunos();
@@ -26,9 +27,10 @@ export class AlunosComponent implements OnInit {
 
   carregarAlunos() {
     this.apiService.getAlunos().subscribe(alunos => {
-      this.alunos = alunos;
+      this.alunos = alunos.map(aluno => ({ ...aluno, id: aluno.id || 0 }));
       this.filtrarAlunos();
-    });
+      console.log('Alunos carregados: ', this.alunos);
+    }, err => console.error('Erro ao carregar alunos: ', err));
   }
 
   filtrarAlunos() {
@@ -76,5 +78,33 @@ export class AlunosComponent implements OnInit {
     const target = event.target as HTMLInputElement;
     this.filtroDataExpiracao = target.value;
     this.filtrarAlunos();
+  }
+
+  editarAluno(alunoId: number | undefined) {
+    if (alunoId !== undefined) {
+      console.log('Navegando para editar aluno: ', `/aluno-form/${alunoId}`);
+      this.router.navigate(['/aluno-form', alunoId]);
+    } else {
+      console.error('ID do aluno indefinido ao editar: ', this.alunos);
+    }
+  }
+
+  verAluno(alunoId: number | undefined) {
+    if (alunoId !== undefined) {
+      console.log('Navegando para ver aluno:', `/aluno-detalhe/${alunoId}`);
+      this.router.navigate(['/aluno-detalhe', alunoId]);
+    } else {
+      console.error('ID do aluno indefinido ao ver detalhes: ', this.alunos);
+    }
+  }
+
+  novoTreino(alunoId: number | undefined) {
+    if (alunoId !== undefined) {
+      console.log('Navegando para novo treino:', `/treino-form/${alunoId}`);
+      this.router.navigate(['/treino-form', alunoId]);
+    } else {
+      console.error('ID do aluno indefinido ao criar novo treino.');
+    }
+   
   }
 }

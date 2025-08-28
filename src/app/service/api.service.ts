@@ -18,6 +18,10 @@ export class ApiService {
     return this.http.get<Aluno[]>(`${this.baseUrl}/alunos`);
   }
 
+  getAluno(alunoId: number): Observable<Aluno> {
+    return this.http.get<Aluno>(`${this.baseUrl}/alunos/${alunoId}`)
+  }
+
   getTreinos(): Observable<Treino[]> {
     return this.http.get<Treino[]>(`${this.baseUrl}/treinos`);
   }
@@ -36,5 +40,9 @@ export class ApiService {
 
   createTipoTreino(tipoTreino: TipoTreino): Observable<TipoTreino> {
     return this.http.post<TipoTreino>(`${this.baseUrl}/tipoTreinos`, tipoTreino);
+  }
+
+  updateAluno(alunoId: number, aluno: Aluno): Observable<Aluno> {
+    return this.http.put<Aluno>(`${this.baseUrl}/alunos/${alunoId}`, aluno);
   }
 }
