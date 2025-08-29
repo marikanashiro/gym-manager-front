@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Aluno } from '../../model/aluno.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../service/api.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class AlunoDetalheComponent implements OnInit {
   aluno: Aluno | undefined;
   alunoId: number | undefined;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService){ }
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router){ }
 
   ngOnInit(): void {
       console.log('Inicializando AlunoDetalheComponent');
@@ -35,5 +35,9 @@ export class AlunoDetalheComponent implements OnInit {
           }
         });
       }
+  }
+
+  voltar() {
+    this.router.navigate(['/alunos']);
   }
 }

@@ -82,7 +82,7 @@ export class AlunosComponent implements OnInit {
 
   editarAluno(alunoId: number | undefined) {
     if (alunoId !== undefined) {
-      console.log('Navegando para editar aluno: ', `/aluno-form/${alunoId}`);
+      console.log('Navegando para editar aluno: ', `/aluno-form/`, alunoId);
       this.router.navigate(['/aluno-form', alunoId]);
     } else {
       console.error('ID do aluno indefinido ao editar: ', this.alunos);

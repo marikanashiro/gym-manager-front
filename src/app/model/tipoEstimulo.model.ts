@@ -1,7 +1,7 @@
 export enum TipoEstimulo {
-    FORCA = 'FORÇA',
-    METABOLICO = 'METABÓLICO',
-    HIPERTROFIA = 'HIPERTROFIA',
-    RESISTENCIA = 'RESISTÊNCIA',
-    ESPECIFICO = 'ESPECÍFICO'
+    FORCA = 'Força',
+    METABOLICO = 'Metabólico',
+    HIPERTROFIA = 'Hipertrofia',
+    RESISTENCIA = 'Resistência',
+    ESPECIFICO = 'Específico'
 }
