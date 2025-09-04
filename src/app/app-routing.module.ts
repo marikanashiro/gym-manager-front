@@ -11,6 +11,7 @@ export const routes: Routes = [
     { path: 'alunos', component: AlunosComponent },
     { path: 'aluno-form/:alunoId', component: AlunoFormComponent },
     { path: 'aluno-detalhe/:alunoId', component: AlunoDetalheComponent },
+    { path: 'aluno-form', component: AlunoFormComponent},
     { path: 'treino-form/:alunoId', component: TreinoFormComponent },
     { path: 'tipo-treino-form/:treinoId', component: TipoTreinoFormComponent},
     

@@ -34,6 +34,12 @@ export class TreinoFormComponent implements OnInit {
   ngOnInit(): void {
       this.alunoId = +this.route.snapshot.paramMap.get('alunoId')!;
       this.treino.alunoId = this.alunoId;
+      const treinoId = this.route.snapshot.paramMap.get('treinoId');
+      if (treinoId) {
+        this.apiService.getTreino(+treinoId).subscribe(treino => {
+          this.treino = treino;
+        })
+      }
   }
 
   onSubmit() {
@@ -44,7 +50,9 @@ export class TreinoFormComponent implements OnInit {
     this.apiService.createTreino(this.treino).subscribe({
       next: (response) => {
         alert('Treino criado com sucesso!');
-        this.navigateToAlunos();
+        this.router.navigate(['/alunos']).then(() => {
+          window.location.reload();
+        });
       },
       error: (err) => {
         console.error('Erro ao criar treino: ', err);
@@ -55,5 +63,24 @@ export class TreinoFormComponent implements OnInit {
 
   navigateToAlunos() {
     this.router.navigate(['/alunos']);
+  }
+
+  adicionarTipoTreino() {
+    if (!this.treino.id) {
+      // se o treino ainda não foi salvo, salva primeiro para criar o treinoId
+      this.apiService.createTreino(this.treino).subscribe({
+        next: (response) => {
+          this.treino.id = response.id;
+          this.router.navigate(['/tipo-treino-form/', this.treino.id]);
+        },
+        error: (err) => {
+          console.error('Erro ao salvar treino temporário: ', err);
+          alert('Erro ao preparar o treino. Veja o console para mais detalhes (ou chama a gatinha)');
+        }
+      });
+    } else {
+      // se o treino já foi salvo
+      this.router.navigate(['/tipo-treino-form', this.treino.id]);
+    }
   }
 }

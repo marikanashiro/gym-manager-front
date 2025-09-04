@@ -19,7 +19,11 @@ export class ApiService {
   }
 
   getAluno(alunoId: number): Observable<Aluno> {
-    return this.http.get<Aluno>(`${this.baseUrl}/alunos/${alunoId}`)
+    return this.http.get<Aluno>(`${this.baseUrl}/alunos/${alunoId}`);
+  }
+
+  getTreino(treinoId: number): Observable<Treino> {
+    return this.http.get<Treino>(`${this.baseUrl}/treinos/${treinoId}`);
   }
 
   getTreinos(): Observable<Treino[]> {

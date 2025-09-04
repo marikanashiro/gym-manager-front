@@ -37,11 +37,17 @@ export class TipoTreinoFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (!this.tipoTreino.gruposMusculares.length || !this.tipoTreino.exercicios) {
+    if (!this.tipoTreino.gruposMusculares.length || !this.tipoTreino.exercicios.trim()) {
       alert('Selecione pelo menos um grupo muscular e informe os exercícios.');
       return;
     }
-    this.apiService.createTipoTreino(this.tipoTreino).subscribe({
+
+    const tipoTreinoToSend = {
+      ...this.tipoTreino,
+      treinoId: this.treinoId
+    };
+
+    this.apiService.createTipoTreino(tipoTreinoToSend).subscribe({
       next: (response) => {
         alert('Tipo de Treino criado com sucesso!');
         this.navigateToTreinoForm();

@@ -11,6 +11,7 @@
             <label for="dataExpiracao">Data de Expiração:</label>
             <input type="date" id="dataExpiracao" name="dataExpiracao" [(ngModel)]="treino.dataExpiracao" required />
         </div>
+        <button type="button" (click)="adicionarTipoTreino()">Adicionar Tipo Treino</button>
         <button type="submit" [disabled]="!treinoForm.valid">Criar Treino</button>
         <button type="button" (click)="navigateToAlunos()">Cancelar</button>
     </form>

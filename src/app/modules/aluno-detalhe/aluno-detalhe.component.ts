@@ -18,9 +18,7 @@ export class AlunoDetalheComponent implements OnInit {
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router){ }
 
   ngOnInit(): void {
-      console.log('Inicializando AlunoDetalheComponent');
       this.alunoId = +this.route.snapshot.paramMap.get('alunoId')!;
-      console.log('Carregando com alunoId: ', this.alunoId);
       if (this.alunoId) {
         this.apiService.getAluno(this.alunoId).subscribe({
           next: (aluno) => {
@@ -28,7 +26,6 @@ export class AlunoDetalheComponent implements OnInit {
             if (this.aluno.treinos) {
               this.aluno.treinos.sort((a, b) => new Date(b.dataCriacao).getTime() - new Date(a.dataCriacao).getTime());
             }
-            console.log('Aluno carregado: ', this.aluno);
           },
           error: (err) => {
             console.error('Erro ao carregar detalhes do aluno: ', err);

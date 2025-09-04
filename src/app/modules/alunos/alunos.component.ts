@@ -80,6 +80,10 @@ export class AlunosComponent implements OnInit {
     this.filtrarAlunos();
   }
 
+  novoAluno() {
+    this.router.navigate(['/aluno-form']);
+  }
+
   editarAluno(alunoId: number | undefined) {
     if (alunoId !== undefined) {
       console.log('Navegando para editar aluno: ', `/aluno-form/`, alunoId);
